@@ -1,12 +1,15 @@
-import Toast from "@/components/Toast";
+"use client";
+import { useEffect } from "react";
+import "flowbite/dist/flowbite.css";
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    import("flowbite"); // ✅ Ensure Flowbite loads
+  }, []);
+
   return (
     <html lang="en">
-      <body>
-        {children}
-        <Toast /> {/* Always present for notifications */}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

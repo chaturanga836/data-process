@@ -1,33 +1,28 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { Sidebar } from "flowbite-react";
+import { HiHome, HiCog, HiOutlineClipboardList } from "react-icons/hi";
 import Link from "next/link";
 
 const navItems = [
-  { name: "Dashboard", href: "/dashboard" },
-  { name: "Manage Endpoints", href: "/endpoints" },
-  { name: "Logs", href: "/logs" },
+  { name: "Dashboard", href: "/dashboard", icon: HiHome },
+  { name: "Manage Endpoints", href: "/endpoints", icon: HiCog },
+  { name: "Logs", href: "/logs", icon: HiOutlineClipboardList },
 ];
 
-export default function Sidebar() {
-  const pathname = usePathname();
-
+export default function CustomSidebar() {
   return (
-    <aside className="w-64 bg-gray-900 text-white h-screen p-5 fixed">
-      <h2 className="text-xl font-bold mb-6">ETL Dashboard</h2>
-      <nav>
-        {navItems.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className={`block py-2 px-4 rounded ${
-              pathname === item.href ? "bg-gray-700" : "hover:bg-gray-800"
-            }`}
-          >
-            {item.name}
-          </Link>
-        ))}
-      </nav>
-    </aside>
+    <Sidebar className="w-64 h-screen fixed bg-gray-900 text-white">
+      <Sidebar.Items>
+        <Sidebar.ItemGroup>
+          <h2 className="text-xl font-bold px-4 py-2 text-white">ETL Dashboard</h2>
+          {navItems.map(({ name, href, icon: Icon }) => (
+            <Sidebar.Item key={href} as={Link} href={href} icon={Icon}>
+              {name}
+            </Sidebar.Item>
+          ))}
+        </Sidebar.ItemGroup>
+      </Sidebar.Items>
+    </Sidebar>
   );
 }

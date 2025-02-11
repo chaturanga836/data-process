@@ -1,5 +1,6 @@
 "use client";
 
+import { Alert } from "flowbite-react";
 import { useToastStore } from "@/store/toastStore";
 import { useEffect, useState } from "react";
 
@@ -14,22 +15,14 @@ export default function Toast() {
   }, [toasts]);
 
   return (
-    <div className="fixed top-5 right-5 z-50 flex flex-col space-y-2">
+    <div className="fixed top-5 right-5 z-50 space-y-2">
       {toasts.map((toast) => (
-        <div
-          key={toast.id}
-          className={`p-3 rounded-lg shadow-md text-white text-sm transition-opacity ${
-            toast.type === "success" ? "bg-green-500" : "bg-red-500"
-          } ${visible === toast.id ? "opacity-100" : "opacity-0"}`}
-        >
+        <Alert key={toast.id} color={toast.type === "success" ? "green" : "red"}>
           {toast.message}
-          <button
-            className="ml-2 text-white font-bold"
-            onClick={() => removeToast(toast.id)}
-          >
+          <button onClick={() => removeToast(toast.id)} className="ml-2 font-bold">
             ✕
           </button>
-        </div>
+        </Alert>
       ))}
     </div>
   );

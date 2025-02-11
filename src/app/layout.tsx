@@ -1,14 +1,14 @@
 "use client";
-import { useEffect } from "react";
-import "flowbite/dist/flowbite.css";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
-  useEffect(() => {
-    import("flowbite"); // ✅ Ensure Flowbite loads
-  }, []);
+import { ThemeModeScript } from "flowbite-react";;
+import './globals.css';
 
+export default function RootLayout({ children } : { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html suppressHydrationWarning>
+      <head>
+        <ThemeModeScript />
+      </head>
       <body>{children}</body>
     </html>
   );

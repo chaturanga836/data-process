@@ -14,7 +14,7 @@ interface ETLStore {
   error: string | null;
   
   fetchEndpoints: () => Promise<void>;
-  addNewEndpoint: (endpoint: { name: string; path: string; method: string }) => Promise<void>;
+  addNewEndpoint: (endpoint: { name: string; path: string; method: string, query_params:any, body_params:any, base_url:string }) => Promise<void>;
   updateExistingEndpoint: (id: string, endpointData: { name: string; path: string; method: string }) => Promise<void>;
   deleteEndpointById: (id: string) => Promise<void>;
 }

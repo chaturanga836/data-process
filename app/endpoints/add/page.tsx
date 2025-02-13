@@ -10,7 +10,7 @@ export default function AddEndpointPage() {
         <div className="flex">
             <Sidebar />
             <main className="ml-64 p-5 w-full">
-                <Navbar title="Add New Endpoint" />
+                <Navbar title="Add New Endpoint Connection" />
                 <EndpointForm />
             </main>
         </div>
